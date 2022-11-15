@@ -3,7 +3,7 @@ let width = 150;
 let height = 150;
 let radius = 200;
 
-const numBoids = 150;
+const numBoids = 100;
 const visualRange = 75;
 
 var boids = [];
@@ -45,14 +45,14 @@ function sizeCanvas() {
     height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
-    radius = Math.min(width / 2.0, height / 2.0)
-    alert(radius)
+    radius = Math.min(width / 2.0, height / 2.0)-50
+    // alert(radius)
 }
 
 // Constrain a boid to within the window. If it gets too close to an edge,
 // nudge it back in and reverse its direction.
 function keepWithinBounds(boid) {
-    const margin = 150;
+    const margin = 100;
     const turnFactor = 1;
     dis2cx = boid.x - width / 2
     dis2cy = boid.y - height / 2
@@ -105,7 +105,7 @@ function flyTowardsCenter(boid) {
 
 // Move away from other boids that are too close to avoid colliding
 function avoidOthers(boid) {
-    const minDistance = 20; // The distance to stay away from other boids
+    const minDistance = 25; // The distance to stay away from other boids
     const avoidFactor = 0.05; // Adjust velocity by this %
     let moveX = 0;
     let moveY = 0;
@@ -151,7 +151,7 @@ function matchVelocity(boid) {
 // Speed will naturally vary in flocking behavior, but real animals can't go
 // arbitrarily fast.
 function limitSpeed(boid) {
-    const speedLimit = 15;
+    const speedLimit = 10;
 
     const speed = Math.sqrt(boid.dx * boid.dx + boid.dy * boid.dy);
     if (speed > speedLimit) {
